@@ -25,35 +25,35 @@ const CartPage = () => {
 	}
 
 	const handleCheckout = async (cartData: any[]) => {
-  try {
-    const lineItems = cartData.map((item) => ({
-      variantId: item.product.variants.edges[0].node.id, 
-      quantity: item.quantity
-    }));
+		try {
+			const lineItems = cartData.map((item) => ({
+				variantId: item.product.variants.edges[0].node.id,
+				quantity: item.quantity
+			}));
 
-    const response = await getCheckoutUrl(lineItems);
-    
-    // Check for GraphQL errors
-    if (response.errors) {
-      console.error("GraphQL Error:", response.errors[0].message);
-      return;
-    }
+			const response = await getCheckoutUrl(lineItems);
 
-    const cartDataApi = response.data.cartCreate;
+			// Check for GraphQL errors
+			if (response.errors) {
+				console.error("GraphQL Error:", response.errors[0].message);
+				return;
+			}
 
-    if (cartDataApi.userErrors.length > 0) {
-      console.error("Shopify Error:", cartDataApi.userErrors[0].message);
-      return;
-    }
+			const cartDataApi = response.data.cartCreate;
 
-    // In Cart API, it is 'checkoutUrl'
-    const url = cartDataApi.cart.checkoutUrl;
-    await WebBrowser.openBrowserAsync(url);
+			if (cartDataApi.userErrors.length > 0) {
+				console.error("Shopify Error:", cartDataApi.userErrors[0].message);
+				return;
+			}
 
-  } catch (err) {
-    console.error("System Error:", err);
-  }
-};
+			// In Cart API, it is 'checkoutUrl'
+			const url = cartDataApi.cart.checkoutUrl;
+			await WebBrowser.openBrowserAsync(url);
+
+		} catch (err) {
+			console.error("System Error:", err);
+		}
+	};
 
 
 
@@ -103,6 +103,12 @@ const CartPage = () => {
 						<View className='flex flex-row justify-between items-center p-2'>
 							<Text className='text-white'>Total Cost:</Text>
 							<Text className='text-white'>{totalCost}</Text>
+						</View>
+
+						{/* show message that this is dev store and you will have to enter pass to enter checkout page. password: showpa */}
+						<View className={`flex flex-col justify-start items-start p-2 my-10 border border-[${colors.primary}] rounded`}>
+							<Text className='font-bold text-white'>Note: </Text>
+							<Text className='text-white'>This is a dev store and you will have to enter pass to enter checkout page. password: showpa</Text>
 						</View>
 
 						{/* convert to pressable */}
