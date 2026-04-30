@@ -8,9 +8,9 @@
     "scheme": "shopifyapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.naeemabas.shopifyapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -20,7 +20,8 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.naeemabas.shopifyapp"
     },
     "web": {
       "output": "static",
@@ -28,6 +29,7 @@
     },
     "plugins": [
       "expo-router",
+      "expo-secure-store",
       [
         "expo-splash-screen",
         {
@@ -44,6 +46,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "9130dc5e-5c18-43c9-a037-764e0151e0e7"
+      }
     }
   }
 }

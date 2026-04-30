@@ -10,6 +10,8 @@ export default async function getAllProducts() {
         id
         title
         description
+        handle
+        productType
         images(first: 1) {
           edges {
             node {
@@ -30,6 +32,6 @@ export default async function getAllProducts() {
 }`
 
   const response = await shopifyClient(query)
-  console.log("data", response.data.products.edges)
+  // console.log("data", response.data.products.edges)
   return response.data.products.edges
 }

@@ -1,21 +1,36 @@
 import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
 import { FlashList } from '@shopify/flash-list';
+import { useState } from 'react';
 
-const Catagories = ["All", "Electronics", "Clothing", "Books", "Home", "Beauty", "Toys", "Sports", "Furniture", "Appliances", "Garden", "Pet Supplies", "Jewelry", "Accessories", "Shoes", "Bags", "Watches", "Health", "Food", "Drinks"];
 
-const FilterOptions = () => {
-  return (
-    <View className='h-12 flex items-center gap-3 w-full'>
+const FilterOptions = ({selected, setSelected, productTypes}: {selected: string, setSelected: (item: string) => void, productTypes: string[]}) => {
+  
+
+  const Catagories = [...new Set(productTypes)]
+  Catagories.push('All')
+  Catagories.reverse()
+  console.log("catagories", Catagories, productTypes)
+
+  const handleSelection = (item: string) => {
+    setSelected(item);
+  } 
+
+   return (
+    <View className='h-12 flex justify-center w-full'>
       <FlashList
         data={Catagories}
         horizontal
-        renderItem={({ item }) => (
-          <TouchableOpacity className=' bg-[#e4e4e4] mx-2 my-auto rounded-xl px-3 py-0.5 '>
+        renderItem={({ item }) => {
+          if (item === selected) {
+            return <TouchableOpacity onPress={() => handleSelection(item)} className=' bg-black mx-1.5 my-auto rounded-xl px-3 py-0.5 '>
+            <Text className='text-white font-semibold'>{item}</Text>
+          </TouchableOpacity>
+          }
+          return <TouchableOpacity onPress={() => handleSelection(item)} className=' bg-[#e4e4e4] mx-1.5 my-auto rounded-xl px-3 py-0.5 '>
             <Text>{item}</Text>
           </TouchableOpacity>
-        )}
-        keyExtractor={(item) => item}
+        }}
+        keyExtractor={(item) => item + Date.now()}
         showsHorizontalScrollIndicator={false}
       />
     </View>

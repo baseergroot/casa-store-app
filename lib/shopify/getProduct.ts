@@ -38,6 +38,6 @@ export default async function getProduct(id: string) {
 }`
 
   const response = await shopifyClient(query, { id })
-  console.log("data: ", response.data)
-  return response.data
+  console.log("data: ", response.data.product)
+  return response.data.product
 }

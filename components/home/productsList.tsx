@@ -3,12 +3,12 @@ import React from 'react'
 import { FlashList } from '@shopify/flash-list'
 import { useRouter } from 'expo-router'
 
-const ProductList = ({ products }: { products: any[] }) => {
+const ProductList = ({ products, selected }: { products: any[], selected: string }) => {
   const router = useRouter()
   return (
     <View className="flex-1 px-1 mt-4 ">
       <FlashList
-        data={products}
+        data={products.filter((product) => product.node.productType === selected || selected === "All")}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => router.push({ pathname: '/product/[productId]', params: { productId: item.node.id } })} className=' bg-white/50 mx-2 mb-4 rounded px-0.5 flex items-center'>
             <Image
