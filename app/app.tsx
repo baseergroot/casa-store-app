@@ -40,7 +40,7 @@ export default function Screen() {
   }
 
   React.useEffect(() => {
-    fetchProducts() 
+    fetchProducts()
   }, [])
 
   return (
