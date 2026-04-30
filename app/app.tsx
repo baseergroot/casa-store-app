@@ -26,17 +26,21 @@ export default function Screen() {
   const [productTypes, setProductTypes] = useState([])
 
   const fetchProducts = async () => {
-    setProducts(await getAllProducts())
+    const res = await getAllProducts()
+    setProducts(res)
+
+    res.forEach(product => {
+      const newProductType = product.node.productType as string
+      setProductTypes(prev => { 
+        console.log("types", newProductType)
+        return prev.includes(newProductType) || newProductType === ""  ? prev : [...prev, newProductType]
+      }) 
+    }) 
+
   }
 
   React.useEffect(() => {
     fetchProducts() 
-    products.forEach(product => {
-      const newProductType = product.node.productType as string
-      setProductTypes(prev => { 
-        return prev.includes(newProductType) || newProductType === ""  ? prev : [...prev, newProductType]
-      })
-    }) 
   }, [])
 
   return (
