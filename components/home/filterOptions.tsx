@@ -19,18 +19,18 @@ const FilterOptions = ({ selected, setSelected, productTypes }: { selected: stri
   }
 
   return (
-    <View className='h-12 flex justify-center w-full'>
+    <View className='h-16 py-2 flex justify-center w-full'>
       <FlashList
         data={Catagories}
         horizontal
         renderItem={({ item }) => {
           if (item === selected) {
-            return <TouchableOpacity onPress={() => handleSelection(item)} className=' bg-black mx-1.5 my-auto rounded-xl px-3 py-0.5 '>
-              <Text className='text-white font-semibold'>{item}</Text>
+            return <TouchableOpacity onPress={() => handleSelection(item)} className='bg-primary mx-1.5 my-auto rounded-full px-5 py-2 shadow-sm'>
+              <Text className='text-primary-foreground font-sans font-semibold tracking-wide'>{item}</Text>
             </TouchableOpacity>
           }
-          return <TouchableOpacity onPress={() => handleSelection(item)} className=' bg-[#e4e4e4] mx-1.5 my-auto rounded-xl px-3 py-0.5 '>
-            <Text>{item}</Text>
+          return <TouchableOpacity onPress={() => handleSelection(item)} className='bg-muted/30 mx-1.5 my-auto rounded-full px-5 py-2'>
+            <Text className='text-foreground font-sans font-medium tracking-wide'>{item}</Text>
           </TouchableOpacity>
         }}
         keyExtractor={(item) => item + Date.now()}

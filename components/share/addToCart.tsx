@@ -35,8 +35,8 @@ const AddToCart = ({ product, productId, quantity }: { product: any, productId: 
   }
 
   return (
-    <Pressable className='bg-black/60 px-5 py-2 rounded mt-12' onPress={handleAddtoCart}>
-      <Text className='text-white'>Add to Cart</Text>
+    <Pressable className='bg-primary px-8 py-3 rounded-full flex-1 ml-4 items-center justify-center shadow-sm' onPress={handleAddtoCart}>
+      <Text className='text-primary-foreground font-sans font-bold text-base tracking-wide'>Add to Cart</Text>
     </Pressable>
   )
 }

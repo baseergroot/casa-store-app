@@ -67,62 +67,56 @@ const CartPage = () => {
 	console.log(cart)
 
 	return (
-		<SafeAreaView className={`bg-[${colors.background}] flex-1`}>
-			{/* <Header /> */}
+		<SafeAreaView className='bg-background flex-1'>
+			<Header backButton={true} />
 
 			{
 				cart.length > 0 ? (
-					<>
-						<View className='flex flex-col justify-center items-center mt-10'>
-							<Text className='text-white text-xl font-bold'>Your Cart</Text>
-						</View>
+					<View className='flex-1 px-6 pt-4'>
+						<Text className='text-foreground font-serif text-3xl tracking-tight mb-8'>Your Cart</Text>
 
-						<View className='flex flex-row justify-between items-center p-2'>
-							{/* <Text className='text-white'>Product Image</Text> */}
-							<Text className='text-white'>Product Name</Text>
-							<View className='flex flex-row justify-between items-center gap-20'>
-								<Text className='text-white'>Quantity</Text>
-								<Text className='text-white'>Price</Text>
+						<View className='flex flex-row justify-between items-center border-b border-border/50 pb-2 mb-2'>
+							<Text className='text-muted-foreground font-sans text-xs uppercase tracking-widest flex-1'>Product</Text>
+							<View className='flex flex-row justify-between items-center w-32'>
+								<Text className='text-muted-foreground font-sans text-xs uppercase tracking-widest text-center w-10'>Qty</Text>
+								<Text className='text-muted-foreground font-sans text-xs uppercase tracking-widest text-right flex-1'>Price</Text>
 							</View>
-							{/* <Text className='text-white'>Total</Text> */}
-							{/* <Text className='text-white'>Remove</Text> */}
 						</View>
-
 
 						{cart?.map((item: any) => (
-							<View key={item.productId} className='flex flex-row justify-between items-center p-2'>
-
-								<Text className='text-white'>{item.product.title}</Text>
-								<View className='flex flex-row justify-between items-center gap-20'>
-									<Text className='text-white'>{item.quantity}</Text>
-									<Text className='text-white'>{item.product.priceRange.minVariantPrice.amount}</Text>
+							<View key={item.productId} className='flex flex-row justify-between items-center py-4 border-b border-border/20'>
+								<Text className='text-foreground font-serif text-lg flex-1' numberOfLines={1}>{item.product.title}</Text>
+								<View className='flex flex-row justify-between items-center w-32'>
+									<Text className='text-foreground font-sans text-base text-center w-10'>{item.quantity}</Text>
+									<Text className='text-foreground font-sans text-base text-right flex-1'>{item.product.priceRange.minVariantPrice.amount}</Text>
 								</View>
 							</View>
 						))}
 
-						<View className='flex flex-row justify-between items-center p-2'>
-							<Text className='text-white'>Total Cost:</Text>
-							<Text className='text-white'>{totalCost}</Text>
+						<View className='flex flex-row justify-between items-center pt-6 pb-2'>
+							<Text className='text-foreground font-sans text-lg font-semibold'>Total Cost</Text>
+							<Text className='text-secondary font-sans text-xl font-bold'>{totalCost}</Text>
 						</View>
 
-						{/* show message that this is dev store and you will have to enter pass to enter checkout page. password: showpa */}
-						<View className={`flex flex-col justify-start items-start p-2 my-10 border border-[${colors.primary}] rounded`}>
-							<Text className='font-bold text-white'>Note: </Text>
-							<Text className='text-white'>This is a dev store and you will have to enter pass to enter checkout page. password: showpa</Text>
+						<View className='flex flex-col justify-start items-start p-4 mt-6 border border-border/50 bg-muted/10 rounded-xl'>
+							<Text className='font-sans font-semibold text-foreground mb-1 text-sm uppercase tracking-wide'>Note</Text>
+							<Text className='text-foreground/80 font-sans text-sm leading-relaxed'>This is a dev store. You will need to enter a password to view the checkout page. Password: showpa</Text>
 						</View>
 
-						{/* convert to pressable */}
-						<View className='flex flex-row justify-center gap-16 items-center p-2 absolute bottom-5 right-5 left-5'>
-							<Pressable className='bg-red-500 p-2 rounded w-32 justify-center items-center' onPress={() => {
+						<View className='flex flex-row justify-between gap-4 items-center absolute bottom-10 right-6 left-6'>
+							<Pressable className='border border-border/50 py-3.5 px-6 rounded-full justify-center items-center' onPress={() => {
 								deleteItemAsync('cart')
 								fetchCart()
-							}} ><Text className='text-white'>Clear Cart</Text></Pressable>
-							<Pressable className='bg-green-500 p-2 rounded w-60 justify-center items-center ' onPress={() => { handleCheckout(cart) }} ><Text className='text-white'>Buy Now!</Text></Pressable>
+							}}><Text className='text-foreground font-sans font-medium'>Clear</Text></Pressable>
+							<Pressable className='bg-primary py-3.5 px-8 flex-1 rounded-full justify-center items-center shadow-sm' onPress={() => { handleCheckout(cart) }}><Text className='text-primary-foreground font-sans font-semibold tracking-wide'>Checkout</Text></Pressable>
 						</View>
-					</>
-				) : <View><Text className='text-white'>Cart is empty</Text></View>
+					</View>
+				) : (
+					<View className='flex-1 justify-center items-center'>
+						<Text className='text-muted-foreground font-sans text-lg'>Your cart is empty.</Text>
+					</View>
+				)
 			}
-
 		</SafeAreaView>
 	)
 }

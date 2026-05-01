@@ -2,10 +2,18 @@ import '../global.css';
 import 'expo-dev-client';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
+import { useEffect } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
+import { NotoSerif_400Regular } from '@expo-google-fonts/noto-serif';
+import { Manrope_400Regular, Manrope_500Medium, Manrope_600SemiBold } from '@expo-google-fonts/manrope';
 
 import { NAV_THEME } from '@/theme';
 import { useColorScheme } from '@/lib/useColorScheme';
 import { Stack } from 'expo-router';
+
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync();
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -14,6 +22,23 @@ export {
 
 export default function RootLayout() {
   const { colorScheme, isDarkColorScheme } = useColorScheme();
+
+  const [loaded, error] = useFonts({
+    NotoSerif_400Regular,
+    Manrope_400Regular,
+    Manrope_500Medium,
+    Manrope_600SemiBold,
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
 
   return (
     <>

@@ -54,7 +54,7 @@ export default function Screen() {
       <NavThemeProvider value={NAV_THEME['light']}>
 
         {/* main container */}
-        <SafeAreaView className='flex-1 bg-[#efece6]'>
+        <SafeAreaView className='flex-1 bg-background'>
 
           {/* header */}
           <Header />

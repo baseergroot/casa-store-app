@@ -8,6 +8,12 @@ module.exports = {
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ['NotoSerif_400Regular'],
+        sans: ['Manrope_400Regular'],
+        sansMedium: ['Manrope_500Medium'],
+        sansBold: ['Manrope_600SemiBold'],
+      },
       colors: {
         "warm-gold": '#c9a96e', 
         border: withOpacity('border'),

@@ -32,10 +32,10 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <SafeAreaView className={`bg-${colors.background} flex-1`}>
+      <SafeAreaView className='bg-background flex-1'>
         <Header backButton={true} />
         <View className='flex-1 justify-center items-center'>
-          <Text className='text-white text-lg'>Loading...</Text>
+          <Text className='text-foreground font-sans text-lg'>Loading...</Text>
         </View>
       </SafeAreaView>
     )
@@ -43,31 +43,26 @@ export default function ProductPage() {
 
   const sizes = ['S', 'M', 'L', 'XL']
   return (
-    <SafeAreaView className={`bg-[${colors.background}] bg-gray-200/90 flex-1`}>
+    <SafeAreaView className='bg-background flex-1'>
       <Header backButton={true} />
-      <ScrollView>
-        <View className='flex flex-col justify-center gap-2 p-2'>
-
-          <Image source={{ uri: product?.images?.edges[0]?.node?.url }} className='w-full h-80 bg-white' />
-          <Text className='text-white text-xl font-bold '>{product?.title}</Text>
-          <Text className='text-white font-bold'>Select Size</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Image source={{ uri: product?.images?.edges[0]?.node?.url }} className='w-full aspect-[4/5] object-cover' />
+        <View className='p-6 flex flex-col'>
+          <Text className='text-foreground text-3xl font-serif tracking-tight mb-2'>{product?.title}</Text>
+          <Text className='text-secondary font-sans font-medium text-xl mb-6'>{product?.priceRange?.minVariantPrice?.amount} {product?.priceRange?.minVariantPrice?.currencyCode}</Text>
+          
+          <Text className='text-foreground font-sans font-semibold uppercase tracking-widest text-xs mb-3'>Select Size</Text>
           <SelectSizeBtn sizes={sizes} />
-          <View className='flex flex-row items-center justify-between px-2'>
+          
+          <View className='flex flex-row items-center justify-between mt-6'>
             <ProductQuantity quantity={quantity} setQuantity={setQuantity} />
             <AddToCart product={product} productId={productId as string} quantity={quantity} />
           </View>
 
-          <View className='w-full h-[1.5px] bg-black/10 rounded-full my-2'></View>
-          <Text className='text-white'>{product?.description}</Text>
-          <View className='w-full h-[1.5px] bg-black/10 rounded-full my-2'></View>
-
+          <View className='w-full h-[1px] bg-border my-8'></View>
+          <Text className='text-foreground/80 font-sans leading-relaxed text-base'>{product?.description}</Text>
+          <View className='w-full h-[1px] bg-border my-8'></View>
         </View>
-        <View className='flex flex-row justify-center items-center'>
-          <Text className='text-white'>{product?.priceRange?.minVariantPrice?.amount}</Text>
-          <Text className='text-white'>{product?.priceRange?.minVariantPrice?.currencyCode}</Text>
-
-        </View>
-
       </ScrollView>
     </SafeAreaView>
   )

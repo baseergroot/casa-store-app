@@ -3,19 +3,19 @@ import React from 'react'
 
 const ProductQuantity = ({ quantity, setQuantity }: { quantity: number, setQuantity: (quantity: number) => void }) => {
   return (
-    <View className='flex flex-col gap-2 mt-5'>
-      <Text>Quantity</Text>
-      <View className='flex flex-row gap-2 items-center border border-black/20 p-2 rounded-xl w-36 justify-between'>
-        <Pressable className='bg-slate-400 w-8 h-8 rounded-full justify-center items-center' onPress={() => {
+    <View className='flex flex-col gap-2'>
+      <Text className='text-foreground font-sans font-semibold uppercase tracking-widest text-xs'>Quantity</Text>
+      <View className='flex flex-row gap-2 items-center border border-border/50 py-1.5 px-2 rounded-full w-32 justify-between'>
+        <Pressable className='bg-muted/30 w-8 h-8 rounded-full justify-center items-center' onPress={() => {
           quantity < 2 ? setQuantity(1) : setQuantity(quantity - 1)
         }}>
-          <Text className=''>-</Text>
+          <Text className='text-foreground text-lg leading-none'>-</Text>
         </Pressable>
-        <Text className=''>{quantity}</Text>
-        <Pressable className='bg-slate-400 w-8 h-8 rounded-full justify-center items-center' onPress={() => {
+        <Text className='text-foreground font-sans font-semibold text-base'>{quantity}</Text>
+        <Pressable className='bg-muted/30 w-8 h-8 rounded-full justify-center items-center' onPress={() => {
           setQuantity(quantity + 1)
         }}>
-          <Text className='text-black'>+</Text>
+          <Text className='text-foreground text-lg leading-none'>+</Text>
         </Pressable>
       </View>
     </View>

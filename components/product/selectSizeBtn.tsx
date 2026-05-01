@@ -14,13 +14,13 @@ const SelectSizeBtn = ({ sizes }: { sizes: string[] }) => {
       {sizes.map((size: string) => {
 
         if(size === selected){
-          return <Pressable key={size} className='p-2 w-10 bg-slate-700 rounded' onPress={() => selectSize(size)} >
-            <Text className='text-white text-center'>{size}</Text>
+          return <Pressable key={size} className='py-2.5 w-14 bg-foreground rounded-full border border-foreground' onPress={() => selectSize(size)} >
+            <Text className='text-background text-center font-sans font-semibold'>{size}</Text>
           </Pressable>
         }
 
-        return <Pressable key={size} className='p-2 w-10 bg-slate-400 rounded' onPress={() => selectSize(size)} >
-          <Text className='text-white text-center'>{size}</Text>
+        return <Pressable key={size} className='py-2.5 w-14 bg-transparent rounded-full border border-border/50' onPress={() => selectSize(size)} >
+          <Text className='text-foreground text-center font-sans font-medium'>{size}</Text>
         </Pressable>
       })}
     </View>

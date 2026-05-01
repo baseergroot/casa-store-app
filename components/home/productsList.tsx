@@ -10,13 +10,15 @@ const ProductList = ({ products, selected }: { products: any[], selected: string
       <FlashList
         data={products.filter((product) => product.node.productType === selected || selected === "All")} 
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => router.push({ pathname: '/product/[productId]', params: { productId: item.node.id } })} className=' bg-white/50 mx-2 mb-4 rounded px-0.5 flex items-center'>
+          <TouchableOpacity onPress={() => router.push({ pathname: '/product/[productId]', params: { productId: item.node.id } })} className='bg-card mx-2 mb-6 rounded-xl overflow-hidden shadow-sm'>
             <Image
               source={{ uri: item.node.images.edges[0].node.url }}
-              className="w-full h-48 rounded-tl rounded-tr"
+              className="w-full aspect-[4/5] object-cover"
             />
-            <Text className="font-semibold text pt-1.5">{item.node.title}</Text>
-            <Text className="text-gray-500 pb-1.5">{item.node.priceRange.minVariantPrice.amount} {item.node.priceRange.minVariantPrice.currencyCode}</Text>
+            <View className='p-3'>
+              <Text className="font-serif text-lg tracking-tight text-foreground" numberOfLines={1}>{item.node.title}</Text>
+              <Text className="font-sans text-sm text-secondary font-medium pt-1">{item.node.priceRange.minVariantPrice.amount} {item.node.priceRange.minVariantPrice.currencyCode}</Text>
+            </View>
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.node.id}
