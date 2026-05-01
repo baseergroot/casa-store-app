@@ -17,7 +17,7 @@ const Header = ({ backButton = false }: { backButton?: boolean }) => {
   }
   
   return (
-    <View className='bg-background/95 h-16 flex flex-row justify-between items-center px-6 border-b border-border/20 shadow-sm'>
+    <View className='bg-background/95 h-12 flex flex-row justify-between items-center px-6 border-b border-border/20 shadow-sm'>
       {backButton ? (
         <TouchableOpacity className='flex items-center justify-center w-10' onPress={handleBack}>
           <Feather name="chevron-left" size={28} color="#0f172a" className="text-foreground" />

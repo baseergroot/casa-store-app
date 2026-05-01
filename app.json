@@ -1,8 +1,11 @@
 {
   "expo": {
-    "name": "shopify-app",
+    "name": "Casa Store",
     "slug": "shopify-app",
     "version": "1.0.0",
+    "cli": {
+      "appVersionSource": "remote"
+    },
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "shopifyapp",
@@ -10,30 +13,24 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.naeemabas.shopifyapp"
+      "bundleIdentifier": "com.naeemabas.casa"
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.naeemabas.shopifyapp"
+      "package": "com.naeemabas.casa"
     },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [
+    "plugins": [ 
       "expo-router",
       "expo-secure-store",
       [
-        "expo-splash-screen",
+        "expo-splash-screen", 
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/blank.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",

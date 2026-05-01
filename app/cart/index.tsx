@@ -93,8 +93,11 @@ const CartPage = () => {
 							</View>
 						))}
 
-						<View className='flex flex-row justify-between items-center pt-6 pb-2'>
-							<Text className='text-foreground font-sans text-lg font-semibold'>Total Cost</Text>
+						<View className='flex flex-row justify-between items-end pt-6 pb-2'>
+							<View className='flex flex-col'>
+								<Text className='text-foreground font-sans text-lg font-semibold'>Total Cost</Text>
+								<Text className='text-muted-foreground font-sans text-xs mt-1'>Taxes calculated at checkout</Text>
+							</View>
 							<Text className='text-secondary font-sans text-xl font-bold'>{totalCost}</Text>
 						</View>
 
