@@ -14,7 +14,7 @@ const query = `
   }
 `;
 
-const getCheckoutUrl = async (lineItems) => {
+const getCheckoutUrl = async (lineItems: any[]) => {
   const variables = {
     input: {
       lines: lineItems.map(item => ({

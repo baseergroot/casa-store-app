@@ -24,8 +24,14 @@ export default function RootLayout() {
 
       <NavThemeProvider value={NAV_THEME[colorScheme]}>
         <Stack screenOptions={{
-            headerShown: false
-        }}  />
+          headerShown: false
+        }}  >
+
+          <Stack.Screen name="index" />
+          <Stack.Screen name="cart/index" />
+          <Stack.Screen name="product/[productId]" />
+        </Stack>
+
       </NavThemeProvider>
     </>
   );

@@ -13,7 +13,7 @@ const Header = ({ backButton = false }: { backButton?: boolean }) => {
   }
 
   const handleCart = () => {
-    router.push('/cart/app')
+    router.push('/cart') 
   }
   
   return (

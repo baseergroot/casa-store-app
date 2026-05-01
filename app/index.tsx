@@ -4,6 +4,7 @@ import Header from '@/components/share/header';
 import getAllProducts from '@/lib/shopify/getAllProducts';
 import { useColorScheme } from '@/lib/useColorScheme';
 import { NAV_THEME } from '@/theme';
+import { Product } from '@/types/productType';
 import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
 import { StatusBar } from 'expo-status-bar';
@@ -21,18 +22,18 @@ cssInterop(FlashList, {
 
 export default function Screen() {
   const { isDarkColorScheme, colors } = useColorScheme();
-  const [products, setProducts] = useState([])
-  const [selected, setSelected] = useState('All');
-  const [productTypes, setProductTypes] = useState([])
+  const [products, setProducts] = useState<Product[]>([])
+  const [selected, setSelected] = useState<string>('All');
+  const [productTypes, setProductTypes] = useState<string[]>([])
 
   const fetchProducts = async () => {
-    const res = await getAllProducts()
+    const res: Product[] = await getAllProducts()
     setProducts(res)
 
-    res.forEach(product => {
+    res.forEach((product: Product) => {
       const newProductType = product.node.productType as string
-      setProductTypes(prev => { 
-        console.log("types", newProductType)
+      setProductTypes((prev: string[]) => { 
+        console.log("newProductType", newProductType)
         return prev.includes(newProductType) || newProductType === ""  ? prev : [...prev, newProductType]
       }) 
     }) 

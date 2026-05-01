@@ -32,6 +32,6 @@ export default async function getAllProducts() {
 }`
 
   const response = await shopifyClient(query)
-  // console.log("data", response.data.products.edges)
+  console.log("data", response.data.products.edges[0])
   return response.data.products.edges
 }
