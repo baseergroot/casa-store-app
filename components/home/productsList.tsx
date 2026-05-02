@@ -1,13 +1,17 @@
 import { router } from 'expo-router'
-import React from 'react'
-import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native'
+import React, { useCallback, useState } from 'react'
+import { FlatList, Image, RefreshControl, Text, TouchableOpacity, View } from 'react-native'
 import { Skeleton } from 'boneyard-js/native'
 import '@/bones/registry'
 
-const ProductList = ({ products, selected, loading }: { products: any[], selected: string, loading: boolean }) => {
+const ProductList = ({ products, selected, loading, onRefresh, refreshing }: { products: any[], selected: string, loading: boolean, onRefresh: () => void, refreshing: boolean }) => {
+
   return (
     <View className="flex-1 px-2 mt-4">
       <FlatList
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
         data={products.filter((product) => product.node.productType === selected || selected === "All")}
         renderItem={({ item }) => (
           <View className="flex-1">

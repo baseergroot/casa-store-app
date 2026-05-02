@@ -2,7 +2,6 @@ import ProductQuantity from '@/components/product/productQuantity';
 import SelectSizeBtn from '@/components/product/selectSizeBtn';
 import AddToCart from '@/components/share/addToCart';
 import Header from '@/components/share/header';
-import colors from '@/constant/colors';
 import getProduct from '@/lib/shopify/getProduct';
 import { Skeleton } from 'boneyard-js/react-native';
 import { useLocalSearchParams } from 'expo-router';
@@ -34,17 +33,6 @@ export default function ProductPage() {
     fetchProduct();
     console.log(productId)
   }, []);
-
-  // if (!product) {
-  //   return (
-  //     <SafeAreaView className='bg-background flex-1'>
-  //       <Header backButton={true} />
-  //       <View className='flex-1 justify-center items-center'>
-  //         <Text className='text-foreground font-sans text-lg'>Loading...</Text>
-  //       </View>
-  //     </SafeAreaView>
-  //   )
-  // }
 
   const sizes = ['S', 'M', 'L', 'XL']
   return (

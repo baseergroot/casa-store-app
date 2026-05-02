@@ -26,6 +26,11 @@ export default function Screen() {
   const [productTypes, setProductTypes] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    fetchProducts();
+  }, []); 
 
   const fetchProducts = async () => {
     try {
@@ -75,21 +80,6 @@ export default function Screen() {
         <FilterOptions selected={selected} setSelected={setSelected} productTypes={productTypes} />
 
         {/* product listing */}
-        {/* {loading ? (
-          <View className='flex-1 justify-center items-center'>
-            <Text className='text-foreground font-sans'>Loading products...</Text>
-          </View>
-        ) : error ? (
-          <View className='flex-1 justify-center items-center px-6'>
-            <Text className='text-destructive font-sans text-center mb-4'>{error}</Text>
-            <TouchableOpacity onPress={fetchProducts} className='bg-primary px-6 py-2 rounded-full'>
-              <Text className='text-primary-foreground font-medium'>Retry</Text>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <ProductList products={products} selected={selected} />
-        )} */}
-
         {
           error ? (
             <View className='flex-1 justify-center items-center px-6'>
@@ -99,17 +89,10 @@ export default function Screen() {
               </TouchableOpacity>
             </View>
           ) : (
-            <ProductList products={products} selected={selected} loading={loading} />
+            <ProductList products={products} selected={selected} loading={loading} onRefresh={onRefresh} refreshing={refreshing} />
           )
         }
 
-
-
-        {/* {
-          loading && (
-            <Text>Loading</Text>
-          )
-        } */}
       </SafeAreaView>
     </>
   );
