@@ -1,14 +1,17 @@
 import { router } from 'expo-router'
 import React from 'react'
 import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native'
+import { Skeleton } from 'boneyard-js/native'
+import '@/bones/registry'
 
-const ProductList = ({ products, selected }: { products: any[], selected: string }) => {
+const ProductList = ({ products, selected, loading }: { products: any[], selected: string, loading: boolean }) => {
   return (
     <View className="flex-1 px-2 mt-4">
       <FlatList
         data={products.filter((product) => product.node.productType === selected || selected === "All")}
         renderItem={({ item }) => (
           <View className="flex-1">
+            <Skeleton name="product" loading={loading} dark={false}> 
             <TouchableOpacity
               onPress={() => router.push({ pathname: '/product/[productId]', params: { productId: item.node.id } })}
               className='bg-card m-2 rounded-xl overflow-hidden shadow-sm border border-border/50'
@@ -22,6 +25,7 @@ const ProductList = ({ products, selected }: { products: any[], selected: string
                 <Text className="font-sans text-sm text-secondary font-medium pt-1">{item.node.priceRange.minVariantPrice.amount} {item.node.priceRange.minVariantPrice.currencyCode}</Text>
               </View>
             </TouchableOpacity>
+            </Skeleton>
           </View>
         )}
         keyExtractor={(item) => item.node.id}

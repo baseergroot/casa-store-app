@@ -3,7 +3,6 @@ import ProductList from '@/components/home/productsList';
 import Header from '@/components/share/header';
 import getAllProducts from '@/lib/shopify/getAllProducts';
 import { useColorScheme } from '@/lib/useColorScheme';
-import { NAV_THEME } from '@/theme';
 import { Product } from '@/types/productType';
 import { FlashList } from '@shopify/flash-list';
 import { StatusBar } from 'expo-status-bar';
@@ -12,6 +11,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Alert, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 cssInterop(FlashList, {
   className: 'style',
@@ -32,7 +32,7 @@ export default function Screen() {
       setLoading(true);
       setError(null);
       const res: Product[] = await getAllProducts();
-      
+
       if (!res || res.length === 0) {
         console.warn("Shopify returned 0 products.");
         Alert.alert("No Products Found", "The Shopify API connected successfully but returned an empty list of products. Please check your Shopify inventory.");
@@ -75,7 +75,7 @@ export default function Screen() {
         <FilterOptions selected={selected} setSelected={setSelected} productTypes={productTypes} />
 
         {/* product listing */}
-        {loading ? (
+        {/* {loading ? (
           <View className='flex-1 justify-center items-center'>
             <Text className='text-foreground font-sans'>Loading products...</Text>
           </View>
@@ -88,7 +88,28 @@ export default function Screen() {
           </View>
         ) : (
           <ProductList products={products} selected={selected} />
-        )}
+        )} */}
+
+        {
+          error ? (
+            <View className='flex-1 justify-center items-center px-6'>
+              <Text className='text-destructive font-sans text-center mb-4'>{error}</Text>
+              <TouchableOpacity onPress={fetchProducts} className='bg-primary px-6 py-2 rounded-full'>
+                <Text className='text-primary-foreground font-medium'>Retry</Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <ProductList products={products} selected={selected} loading={loading} />
+          )
+        }
+
+
+
+        {/* {
+          loading && (
+            <Text>Loading</Text>
+          )
+        } */}
       </SafeAreaView>
     </>
   );

@@ -9,11 +9,17 @@ import { Manrope_400Regular, Manrope_500Medium, Manrope_600SemiBold } from '@exp
 
 import { useColorScheme } from '@/lib/useColorScheme';
 import { Stack } from 'expo-router';
+import { configureBoneyard } from 'boneyard-js/native'
+
+  configureBoneyard({
+    color: '#e5e7eb',
+    darkColor: '#303030'
+  })
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export {
+export { 
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
