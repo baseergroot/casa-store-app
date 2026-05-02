@@ -3,32 +3,27 @@
     "name": "Casa Store",
     "slug": "shopify-app",
     "version": "1.0.0",
-    "cli": {
-      "appVersionSource": "remote"
-    },
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "shopifyapp",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.naeemabas.casa"
     },
     "android": {
-      "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
       "package": "com.naeemabas.casa"
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/icon.png"
     },
-    "plugins": [ 
+    "plugins": [
       "expo-router",
       "expo-secure-store",
       [
-        "expo-splash-screen", 
+        "expo-splash-screen",
         {
           "image": "./assets/images/blank.png",
           "imageWidth": 200,
@@ -47,8 +42,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "9130dc5e-5c18-43c9-a037-764e0151e0e7"
+        "projectId": "49a6743c-8358-4fcc-80d5-925e871249c9"
       }
-    }
+    },
+    "owner": "firstnme494"
   }
 }

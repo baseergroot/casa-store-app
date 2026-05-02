@@ -1,6 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 
 
+// to be chnage to async storage
 export async function saveItems(key: string, value: any) {
     await SecureStore.setItemAsync(key, value)
 }

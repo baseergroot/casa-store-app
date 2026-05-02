@@ -1,14 +1,12 @@
 import '../global.css';
 import 'expo-dev-client';
 import { StatusBar } from 'expo-status-bar';
-import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
 import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { NotoSerif_400Regular } from '@expo-google-fonts/noto-serif';
 import { Manrope_400Regular, Manrope_500Medium, Manrope_600SemiBold } from '@expo-google-fonts/manrope';
 
-import { NAV_THEME } from '@/theme';
 import { useColorScheme } from '@/lib/useColorScheme';
 import { Stack } from 'expo-router';
 
@@ -22,7 +20,6 @@ export {
 
 export default function RootLayout() {
   const { colorScheme, isDarkColorScheme } = useColorScheme();
-
   const [loaded, error] = useFonts({
     NotoSerif_400Regular,
     Manrope_400Regular,
@@ -47,17 +44,13 @@ export default function RootLayout() {
         style={isDarkColorScheme ? 'light' : 'dark'}
       />
 
-      <NavThemeProvider value={NAV_THEME[colorScheme]}>
-        <Stack screenOptions={{
-          headerShown: false
-        }}  >
-
-          <Stack.Screen name="index" />
-          <Stack.Screen name="cart/index" />
-          <Stack.Screen name="product/[productId]" />
-        </Stack>
-
-      </NavThemeProvider>
+      <Stack screenOptions={{
+        headerShown: false
+      }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="cart/index" />
+        <Stack.Screen name="product/[productId]" />
+      </Stack>
     </>
   );
 }

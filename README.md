@@ -1,50 +1,90 @@
-# Welcome to your Expo app 👋
+# Casa Store
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Casa Store is a mobile storefront built with Expo and React Native. It pulls products from the Shopify Storefront API, shows product details, lets users add items to cart, and opens Shopify checkout from the app.
 
-## Get started
+This project was built as a learning exercise around mobile UI, Shopify integration, and Expo native builds.
 
-1. Install dependencies
+## Releases
 
-   ```bash
-   npm install
-   ```
+Android builds are published on the [GitHub Releases](https://github.com/baseergroot/expo-shopify/releases) page.
 
-2. Start the app
+## Features
 
-   ```bash
-   npx expo start
-   ```
+- Product listing from Shopify Storefront API
+- Product detail screen
+- Basic category filtering
+- Local cart storage with AsyncStorage / Secure Store helpers
+- Checkout handoff to Shopify
 
-In the output, you'll find options to open the app in a
+## Tech Stack
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Expo
+- React Native
+- Expo Router
+- TypeScript
+- NativeWind
+- Shopify Storefront API
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Project Structure
 
-## Get a fresh project
+- `app/` route-based screens
+- `components/` UI components
+- `lib/shopify/` Shopify queries and client helpers
+- `lib/secureStore/` local cart persistence
+- `types/` shared TypeScript types
 
-When you're ready, run:
+## Getting Started
+
+Install dependencies:
 
 ```bash
-npm run reset-project
+pnpm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Start the development server:
 
-## Learn more
+```bash
+pnpm start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## Join the community
+If you want a local native Android project, generate it with:
 
-Join our community of developers creating universal apps.
+```bash
+pnpm exec expo prebuild -p android
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Environment Variables
+
+Create a `.env` file with:
+
+```bash
+EXPO_PUBLIC_SHOPIFY_STOREFRONT_API_ACCESS_TOKEN=your_token
+EXPO_PUBLIC_SHOPIFY_URL=https://your-store.myshopify.com/api/2026-04/graphql.json
+```
+
+The app reads these values at build time.
+
+## Checkout Access
+
+This project uses a Shopify dev store. When checkout opens in the browser, Shopify may ask for the storefront password.
+
+Use this password:
+
+```bash
+showpa
+```
+
+## Notes
+
+- Product data comes directly from Shopify, so the app depends on valid Storefront API credentials.
+- The checkout flow is handed off to Shopify in the browser rather than completed natively inside the app.
+- For Expo SDK 54 compatibility, AsyncStorage is pinned to `2.2.0`.
+
+## Screens
+
+- Home screen with product feed
+- Product details
+- Cart
+- Shopify checkout redirect

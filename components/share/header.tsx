@@ -1,13 +1,9 @@
 import { Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Feather from '@expo/vector-icons/Feather'
-import { useRouter } from 'expo-router'
-import { Badge } from '@react-navigation/elements'
+import { router } from 'expo-router'
 
 const Header = ({ backButton = false }: { backButton?: boolean }) => {
-  const router = useRouter()
-
-  // implent later
   const handleBack = () => {
     router.back()
   }
@@ -24,9 +20,9 @@ const Header = ({ backButton = false }: { backButton?: boolean }) => {
         </TouchableOpacity>
       ) : <View className='w-10' />}
       
-      <Text className='font-serif text-2xl tracking-tight text-foreground'>CASA</Text>
+      <Text className='font-serif text-2xl tracking-tight text-foreground'>CASA Store</Text>
       
-      <TouchableOpacity className='flex items-center justify-center w-10 items-end' onPress={handleCart}>
+      <TouchableOpacity className='flex justify-center w-10 items-end' onPress={handleCart}>
         <Feather name="shopping-bag" size={22} color="#0f172a" className="text-foreground" />
       </TouchableOpacity>
     </View>

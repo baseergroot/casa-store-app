@@ -1,7 +1,7 @@
 import { Pressable, View } from 'react-native';
 import Animated, { LayoutAnimationConfig, ZoomInRotate } from 'react-native-reanimated';
 
-import { Icon } from '@/@/components/nativewindui/Icon';
+import { Icon } from '@/components/nativewindui/Icon';
 import { cn } from '@/lib/cn';
 import { useColorScheme } from '@/lib/useColorScheme';
 import { COLORS } from '@/theme/colors';
